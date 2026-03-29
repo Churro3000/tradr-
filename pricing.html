@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Tradr</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --blue:#2563EB; --amber:#F59E0B; --dark:#0F172A; --white:#FFFFFF; --grey:#94A3B8; --dark2:#1E293B; --dark3:#0D1526; --font:'Open Sans',sans-serif; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--dark);color:var(--white);}
+
+header{position:sticky;top:0;z-index:100;background:rgba(15,23,42,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(37,99,235,0.15);padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:36px;height:36px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--white);}
+.logo-word{font-size:22px;font-weight:800;color:var(--white);}
+nav{display:flex;align-items:center;gap:2rem;}
+nav a{color:var(--grey);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s;}
+nav a:hover{color:var(--white);}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:8px;font-family:var(--font);font-weight:600;font-size:0.9rem;cursor:pointer;text-decoration:none;transition:all 0.2s;border:none;}
+.btn-amber{background:var(--amber);color:var(--dark);}
+.btn-amber:hover{background:#FBBF24;transform:translateY(-1px);box-shadow:0 8px 24px rgba(245,158,11,0.35);}
+.btn-blue{background:var(--blue);color:var(--white);}
+.btn-blue:hover{background:#1D4ED8;}
+.btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.25);}
+.btn-outline:hover{border-color:var(--white);}
+
+.hero{text-align:center;padding:5rem 2rem 3rem;position:relative;}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(circle,rgba(37,99,235,0.15) 0%,transparent 70%);pointer-events:none;}
+.section-label{font-size:0.8rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.8rem;}
+h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem;}
+.hero-sub{font-size:1.05rem;color:var(--grey);max-width:500px;margin:0 auto 1rem;line-height:1.7;}
+
+.plans-wrap{max-width:900px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;}
+.plan-card{border-radius:20px;padding:2.5rem;border:1px solid rgba(255,255,255,0.08);background:var(--dark2);position:relative;overflow:hidden;}
+.plan-card.featured{border:2px solid var(--blue);box-shadow:0 0 80px rgba(37,99,235,0.15);}
+.plan-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--amber));}
+.plan-badge{display:inline-block;font-size:0.75rem;font-weight:700;padding:3px 10px;border-radius:50px;margin-bottom:1.2rem;text-transform:uppercase;letter-spacing:1px;}
+.badge-blue{background:rgba(37,99,235,0.15);color:#93C5FD;}
+.badge-grey{background:rgba(148,163,184,0.1);color:var(--grey);}
+.plan-name{font-size:1.2rem;font-weight:800;margin-bottom:0.4rem;}
+.plan-price{font-size:3rem;font-weight:800;line-height:1;margin:0.8rem 0 0.3rem;}
+.plan-price span{font-size:0.9rem;color:var(--grey);font-weight:400;}
+.plan-desc{font-size:0.88rem;color:var(--grey);line-height:1.6;margin-bottom:1.8rem;}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:2rem;}
+.plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;line-height:1.5;}
+.plan-features li .check{flex-shrink:0;font-size:0.9rem;margin-top:1px;}
+.check-blue{color:var(--amber);}
+.check-grey{color:var(--grey);}
+.coming-soon-overlay{position:absolute;inset:0;background:rgba(15,23,42,0.7);display:flex;align-items:center;justify-content:center;border-radius:20px;backdrop-filter:blur(2px);}
+.cs-badge{background:var(--dark2);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:1rem 2rem;text-align:center;}
+.cs-badge p{font-size:0.82rem;color:var(--grey);margin-top:4px;}
+
+.compare{max-width:760px;margin:2rem auto 4rem;padding:0 2rem;}
+.compare h2{font-size:1.4rem;font-weight:800;margin-bottom:1.5rem;text-align:center;}
+.compare-table{background:var(--dark2);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);}
+.ct-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.05);align-items:center;}
+.ct-row:last-child{border-bottom:none;}
+.ct-row.header{background:var(--dark3);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--grey);}
+.ct-row .feat{font-size:0.88rem;}
+.ct-row .val{text-align:center;font-size:0.9rem;font-weight:600;}
+.ct-row .val.yes{color:#4ADE80;}
+.ct-row .val.soon{color:var(--grey);font-size:0.8rem;}
+
+.faq-wrap{max-width:680px;margin:0 auto 5rem;padding:0 2rem;}
+.faq-wrap h2{font-size:1.4rem;font-weight:800;margin-bottom:1.5rem;text-align:center;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,0.07);}
+.faq-q{width:100%;background:none;border:none;color:var(--white);font-family:var(--font);font-size:0.95rem;font-weight:600;text-align:left;padding:1.2rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color 0.2s;}
+.faq-q:hover{color:var(--blue);}
+.faq-icon{font-size:1.4rem;color:var(--blue);transition:transform 0.3s;flex-shrink:0;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-a-inner{padding-bottom:1rem;color:var(--grey);font-size:0.88rem;line-height:1.7;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-item.open .faq-a{max-height:200px;}
+
+footer{background:var(--dark3);padding:2.5rem 2rem;text-align:center;border-top:1px solid rgba(255,255,255,0.05);}
+footer p{color:var(--grey);font-size:0.82rem;margin-top:0.5rem;}
+
+@media(max-width:700px){
+  nav{display:none;}
+  .plans-wrap{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">T</div>
+    <span class="logo-word">Tradr</span>
+  </a>
+  <nav>
+    <a href="index.html#features">Features</a>
+    <a href="index.html#how">How It Works</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a class="btn btn-amber" href="signup.html">Get Started</a>
+</header>
+
+<div class="hero">
+  <div class="section-label">Pricing</div>
+  <h1>Simple. Honest. Affordable.</h1>
+  <p class="hero-sub">One plan includes everything a wholesale business needs to run a professional online catalogue. No hidden fees. No surprises.</p>
+</div>
+
+<div class="plans-wrap">
+  <!-- STARTER -->
+  <div class="plan-card featured">
+    <div class="plan-badge badge-blue">Current Plan</div>
+    <div class="plan-name">Starter</div>
+    <div class="plan-price">$1.50 <span>/ month</span></div>
+    <p class="plan-desc">Everything you need to run a professional wholesale catalogue. Start your 14-day free trial today — no credit card required.</p>
+    <ul class="plan-features">
+      <li><span class="check check-blue">✓</span>Unlimited product listings</li>
+      <li><span class="check check-blue">✓</span>Professional storefront page</li>
+      <li><span class="check check-blue">✓</span>WhatsApp inquiry button on every product</li>
+      <li><span class="check check-blue">✓</span>Up to 8 images per product</li>
+      <li><span class="check check-blue">✓</span>Category organisation & filter bar</li>
+      <li><span class="check check-blue">✓</span>Mobile-optimised storefront</li>
+      <li><span class="check check-blue">✓</span>Custom domain support</li>
+      <li><span class="check check-blue">✓</span>Store branding (logo, banner, accent colour)</li>
+      <li><span class="check check-blue">✓</span>Shareable link + QR code</li>
+      <li><span class="check check-blue">✓</span>14-day free trial included</li>
+    </ul>
+    <a class="btn btn-amber" href="signup.html" style="width:100%;justify-content:center;font-size:0.95rem;padding:13px;">Start Free Trial →</a>
+  </div>
+
+  <!-- PREMIUM -->
+  <div class="plan-card" style="position:relative;">
+    <div class="plan-badge badge-grey">Coming Soon</div>
+    <div class="plan-name">Premium</div>
+    <div class="plan-price" style="color:var(--grey);">TBA</div>
+    <p class="plan-desc">For high-volume wholesalers who need advanced analytics, multiple stores, and premium layout options.</p>
+    <ul class="plan-features">
+      <li><span class="check" style="color:var(--grey);">○</span>Everything in Starter</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Advanced store analytics dashboard</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Multiple store layouts & themes</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Featured product placements</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Video product demos</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Multi-language product listings</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Inquiry lead capture & history</li>
+      <li><span class="check" style="color:var(--grey);">○</span>Priority support</li>
+    </ul>
+    <div class="coming-soon-overlay">
+      <div class="cs-badge">
+        <div style="font-size:1.5rem;margin-bottom:4px;">🚀</div>
+        <strong>Coming Soon</strong>
+        <p>Join the waitlist to get early access</p>
+        <a class="btn btn-blue" href="contact.html" style="margin-top:12px;font-size:0.82rem;padding:8px 16px;">Join Waitlist</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE TABLE -->
+<div class="compare">
+  <h2>Plan Comparison</h2>
+  <div class="compare-table">
+    <div class="ct-row header"><div>Feature</div><div style="text-align:center">Starter</div><div style="text-align:center">Premium</div></div>
+    <div class="ct-row"><div class="feat">Unlimited Products</div><div class="val yes">✓</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">WhatsApp Inquiry Buttons</div><div class="val yes">✓</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Custom Domain</div><div class="val yes">✓</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Product Image Gallery (8/product)</div><div class="val yes">✓</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Mobile Optimised Storefront</div><div class="val yes">✓</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Store Analytics Dashboard</div><div class="val soon">Coming Soon</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Multiple Store Themes</div><div class="val soon">Coming Soon</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Video Product Demos</div><div class="val" style="color:var(--grey);">—</div><div class="val yes">✓</div></div>
+    <div class="ct-row"><div class="feat">Priority Support</div><div class="val" style="color:var(--grey);">—</div><div class="val yes">✓</div></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <h2>Pricing Questions</h2>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Is there really no contract or commitment? <span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Correct. Tradr is month-to-month. You can cancel anytime from your dashboard — no questions asked, no cancellation fees.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">We accept all major credit and debit cards via our secure payment processor. We also support PayPal in selected regions.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Do you offer refunds? <span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">If you're not satisfied in your first 30 days, contact us and we'll issue a full refund, no questions asked. We stand behind our product.</div></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Can I change plans later? <span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Yes. When Premium launches, you'll be able to upgrade from your dashboard with one click. Your existing products and settings will carry over.</div></div>
+  </div>
+</div>
+
+<footer>
+  <a class="logo" href="index.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:0.5rem;">
+    <div class="logo-icon">T</div>
+    <span class="logo-word">Tradr</span>
+  </a>
+  <p>© 2025 Tradr · Professional wholesale catalogues for the world's traders.</p>
+</footer>
+
+<script>
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!open) item.classList.add('open');
+}
+</script>
+</body>
+</html>
